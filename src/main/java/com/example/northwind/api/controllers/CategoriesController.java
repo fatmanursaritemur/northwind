@@ -1,9 +1,7 @@
 package com.example.northwind.api.controllers;
 
 import com.example.northwind.business.abstracts.ICategoryService;
-import com.example.northwind.business.abstracts.IProductService;
 import com.example.northwind.entities.concretes.Category;
-import com.example.northwind.entities.concretes.Product;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

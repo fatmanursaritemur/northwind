@@ -8,14 +8,10 @@ import com.example.northwind.exceptions.CategoryOutOfBoundsException;
 import com.example.northwind.exceptions.ProductDeletingErrorByRelationException;
 import com.example.northwind.exceptions.ProductNotFoundException;
 import java.util.List;
-import java.util.Optional;
-import javax.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ProductManager implements IProductService {
@@ -68,8 +64,5 @@ public class ProductManager implements IProductService {
   public boolean isCategoryFull(Product product) {
     return countProductByCategoryId(product) >= 10 ? true : false;
   }
-
-
-
 
 }

@@ -1,0 +1,15 @@
+package com.example.northwind.dataAccess.concretes;
+
+import com.example.northwind.entities.concretes.Category;
+import com.example.northwind.entities.concretes.Product;
+import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface CategoryRepository extends JpaRepository<Category, Integer> {
+
+  List<Category> findAllByOrderByCategoryNameAsc();
+
+}

@@ -1,12 +1,12 @@
 package com.example.northwind.business.concretes;
 
-import com.example.northwind.UpdateColumnUtil;
 import com.example.northwind.business.abstracts.ICategoryService;
 import com.example.northwind.dataAccess.concretes.CategoryRepository;
 import com.example.northwind.entities.concretes.Category;
-import com.example.northwind.exceptions.CategoryDeletingErrorByRelationException;
-import com.example.northwind.exceptions.CategoryNotFoundException;
-import com.example.northwind.exceptions.ProductNotFoundException;
+import com.example.northwind.entities.concretes.Product;
+import com.example.northwind.exceptions.DeletingErrorByRelationException;
+import com.example.northwind.exceptions.NotFoundException;
+import com.example.northwind.utilities.UpdateColumnUtil;
 import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,25 +26,25 @@ public class CategoryManager implements ICategoryService {
   }
 
   @Override
-  public Category findById(int categoryId) {
+  public Category findById(int categoryId) throws NotFoundException {
     return categoryRepository.findById(categoryId)
-        .orElseThrow(() -> new CategoryNotFoundException(categoryId));
+        .orElseThrow(() -> new NotFoundException(Category.class.getSimpleName(),categoryId));
   }
 
   @Override
-  public Category update(Category category) {
+  public Category update(Category category) throws NotFoundException {
     Category target = categoryRepository.findById(category.getId())
-        .orElseThrow(() -> new ProductNotFoundException(category.getId()));
+        .orElseThrow(() -> new NotFoundException(Category.class.getSimpleName(),category.getId()));
     BeanUtils.copyProperties(category, target, UpdateColumnUtil.getNullPropertyNames(category));
     return categoryRepository.save(target);
   }
 
   @Override
-  public void delete(Category category) {
+  public void delete(Category category) throws DeletingErrorByRelationException {
     try {
       categoryRepository.delete(category);
     } catch (DataIntegrityViolationException e) {
-      throw  new CategoryDeletingErrorByRelationException(category.getId());
+      throw  new DeletingErrorByRelationException(Category.class.getSimpleName(),category.getId());
     }
   }
 

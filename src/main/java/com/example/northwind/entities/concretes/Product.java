@@ -18,8 +18,8 @@ import org.hibernate.annotations.DynamicUpdate;
 @Table(name = "products")
 public class Product implements IEntity {
   @Id
-  @SequenceGenerator(name="yourSequenceGenerator", allocationSize=80, initialValue = 1)
-  @GeneratedValue(strategy=GenerationType.AUTO, generator="yourSequenceGenerator")
+  @SequenceGenerator(name = "yourSequenceGenerator", allocationSize = 80, initialValue = 1)
+  @GeneratedValue(strategy = GenerationType.AUTO, generator = "yourSequenceGenerator")
   @Column(name = "product_id")
   private int id;
 

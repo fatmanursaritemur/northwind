@@ -2,6 +2,9 @@ package com.example.northwind.api.controllers;
 
 import com.example.northwind.business.abstracts.IProductService;
 import com.example.northwind.entities.concretes.Product;
+import com.example.northwind.exceptions.CategoryOutOfBoundsException;
+import com.example.northwind.exceptions.DeletingErrorByRelationException;
+import com.example.northwind.exceptions.NotFoundException;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -29,23 +32,26 @@ public class ProductsController {
 
 
   @GetMapping("/products/{id}")
-  public Product getProductById(@PathVariable("id") int id) {
+  public Product getProductById(@PathVariable("id") int id) throws NotFoundException {
     return productService.findById(id);
   }
 
   @PostMapping("/products")
-  public Product save(@Valid @RequestBody Product product) {
+  public Product save(@Valid @RequestBody Product product) throws CategoryOutOfBoundsException {
     return productService.save(product);
   }
 
   @PutMapping("/products/{id}")
-  public Product update(@PathVariable(value = "id") int id, @Valid @RequestBody Product product) {
+  public Product update(@PathVariable(value = "id") int id, @Valid @RequestBody Product product)
+      throws NotFoundException {
     product.setId(id);
     return productService.update(product);
   }
 
   @DeleteMapping("/products/{id}")
-  public void delete(@PathVariable(value = "id") int id) {
+  public void delete(@PathVariable(value = "id") int id)
+      throws NotFoundException, DeletingErrorByRelationException {
+
     Product deletedProduct = productService.findById(id);
     productService.delete(deletedProduct);
   }

@@ -54,7 +54,7 @@ public class CategoriesController {
     return categoryService.getAll();
   }
 
-  @GetMapping("/categoriesOrderByDesc/{columnName}")
+  @GetMapping("/categoriesOrderByDesc/{columnName}") // getAll alternatifi
   public List<Category> getCategoriesOrderByDesc(
       @PathVariable(value = "columnName") String columnName) {
     return categoryService.getCategoriesOrderByDesc(columnName);

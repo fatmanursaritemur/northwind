@@ -6,7 +6,6 @@ import com.example.northwind.exceptions.CategoryOutOfBoundsException;
 import com.example.northwind.exceptions.DeletingErrorByRelationException;
 import com.example.northwind.exceptions.NotFoundException;
 import java.util.List;
-
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;

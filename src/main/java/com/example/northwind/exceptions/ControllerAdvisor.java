@@ -23,7 +23,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 
   @ExceptionHandler(NotFoundException.class)
   public ResponseEntity<Object> handleNotFoundException(
-      NotFoundException ex, WebRequest request) {
+      NotFoundException ex) {
 
     Map<String, Object> body = new LinkedHashMap<>();
     body.put(TIMESTAMP, LocalDateTime.now());
@@ -35,7 +35,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 
   @ExceptionHandler(CategoryOutOfBoundsException.class)
   public ResponseEntity<Object> handleCategoryOutOfBoundsException(
-      CategoryOutOfBoundsException ex, WebRequest request) {
+      CategoryOutOfBoundsException ex) {
 
     Map<String, Object> body = new LinkedHashMap<>();
     body.put(TIMESTAMP, LocalDateTime.now());
@@ -46,7 +46,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 
   @ExceptionHandler(DeletingErrorByRelationException.class)
   public ResponseEntity<Object> handleDeletingErrorByRelationException(
-      DeletingErrorByRelationException ex, WebRequest request) {
+      DeletingErrorByRelationException ex) {
 
     Map<String, Object> body = new LinkedHashMap<>();
     body.put(TIMESTAMP, LocalDateTime.now());

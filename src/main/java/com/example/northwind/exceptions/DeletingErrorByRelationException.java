@@ -4,6 +4,6 @@ public class DeletingErrorByRelationException extends Exception {
 
   public DeletingErrorByRelationException(String className, int id) {
 
-    super(String.format("%d'li  %s sınıfına ait obje order_details tablosuyla ilişkili", id,className));
+    super(String.format("%d'li  %s sınıfına ait obje order_details tablosuyla ilişkili", id, className));
   }
 }

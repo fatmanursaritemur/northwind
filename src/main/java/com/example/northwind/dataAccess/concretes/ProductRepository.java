@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
-  Integer countProductByCategoryId(int categoryId);
 
+  Integer countProductByCategoryId(int categoryId);
 }

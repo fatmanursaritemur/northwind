@@ -3,7 +3,6 @@ package com.example.northwind.business.concretes;
 import com.example.northwind.business.abstracts.ICategoryService;
 import com.example.northwind.dataAccess.concretes.CategoryRepository;
 import com.example.northwind.entities.concretes.Category;
-import com.example.northwind.entities.concretes.Product;
 import com.example.northwind.exceptions.DeletingErrorByRelationException;
 import com.example.northwind.exceptions.NotFoundException;
 import com.example.northwind.utilities.UpdateColumnUtil;
@@ -28,13 +27,13 @@ public class CategoryManager implements ICategoryService {
   @Override
   public Category findById(int categoryId) throws NotFoundException {
     return categoryRepository.findById(categoryId)
-        .orElseThrow(() -> new NotFoundException(Category.class.getSimpleName(),categoryId));
+        .orElseThrow(() -> new NotFoundException(Category.class.getSimpleName(), categoryId));
   }
 
   @Override
   public Category update(Category category) throws NotFoundException {
     Category target = categoryRepository.findById(category.getId())
-        .orElseThrow(() -> new NotFoundException(Category.class.getSimpleName(),category.getId()));
+        .orElseThrow(() -> new NotFoundException(Category.class.getSimpleName(), category.getId()));
     BeanUtils.copyProperties(category, target, UpdateColumnUtil.getNullPropertyNames(category));
     return categoryRepository.save(target);
   }
@@ -44,7 +43,7 @@ public class CategoryManager implements ICategoryService {
     try {
       categoryRepository.delete(category);
     } catch (DataIntegrityViolationException e) {
-      throw  new DeletingErrorByRelationException(Category.class.getSimpleName(),category.getId());
+      throw new DeletingErrorByRelationException(Category.class.getSimpleName(), category.getId());
     }
   }
 

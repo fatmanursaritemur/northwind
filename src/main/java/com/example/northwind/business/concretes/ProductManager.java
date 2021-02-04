@@ -27,14 +27,14 @@ public class ProductManager implements IProductService {
   @Override
   public Product findById(int productId) throws NotFoundException {
     return productRepository.findById(productId)
-        .orElseThrow(() -> new NotFoundException(Product.class.getSimpleName(),productId));
+        .orElseThrow(() -> new NotFoundException(Product.class.getSimpleName(), productId));
   }
 
   @Override
   public Product update(Product product) throws NotFoundException {
 
     Product target = productRepository.findById(product.getId())
-        .orElseThrow(() -> new NotFoundException(Product.class.getSimpleName(),product.getId()));
+        .orElseThrow(() -> new NotFoundException(Product.class.getSimpleName(), product.getId()));
 
     BeanUtils.copyProperties(product, target, UpdateColumnUtil.getNullPropertyNames(product));
     return productRepository.save(target);
@@ -45,7 +45,7 @@ public class ProductManager implements IProductService {
     try {
       productRepository.delete(product);
     } catch (DataIntegrityViolationException e) {
-      throw  new DeletingErrorByRelationException(Product.class.getSimpleName(),product.getId());
+      throw new DeletingErrorByRelationException(Product.class.getSimpleName(), product.getId());
     }
   }
 

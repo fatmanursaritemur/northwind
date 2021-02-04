@@ -15,27 +15,28 @@ import org.hibernate.annotations.DynamicUpdate;
 @Data
 @Entity
 @DynamicUpdate
-@Table(name = "products")
+@Table (name = "products")
 public class Product implements IEntity {
+
   @Id
-  @SequenceGenerator(name = "yourSequenceGenerator", allocationSize = 80, initialValue = 1)
-  @GeneratedValue(strategy = GenerationType.AUTO, generator = "yourSequenceGenerator")
-  @Column(name = "product_id")
+  @SequenceGenerator (name = "yourSequenceGenerator", allocationSize = 80, initialValue = 1)
+  @GeneratedValue (strategy = GenerationType.AUTO, generator = "yourSequenceGenerator")
+  @Column (name = "product_id")
   private int id;
 
-  @Size(min = 2, max = 200)
-  @Column(name = "product_name")
+  @Size (min = 2, max = 200)
+  @Column (name = "product_name")
   private String productName;
 
-  @Column(name = "category_id")
+  @Column (name = "category_id")
   private int categoryId;
 
-  @Column(name = "unit_price")
+  @Column (name = "unit_price")
   private double unitPrice;
 
-  @Column(name = "quantity_per_unit")
+  @Column (name = "quantity_per_unit")
   private String quantityPerUnit;
 
-  @Column(name = "discontinued")
+  @Column (name = "discontinued")
   private int discontinued;
 }

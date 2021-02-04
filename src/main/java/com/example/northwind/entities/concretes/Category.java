@@ -17,6 +17,7 @@ public class Category implements IEntity {
 
   @Id
   @SequenceGenerator(name = "yourSequenceGenerator", allocationSize = 80, initialValue = 1)
+  // tabloda önceden ekli değerler oldugu için hata veriyordu
   @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "yourSequenceGenerator")
   @Column(name = "category_id")
   private int id;
